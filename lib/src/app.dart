@@ -1,6 +1,5 @@
-import 'package:cash_crop_version1/CartScreen/cartscreen.dart';
-import 'package:cash_crop_version1/DetailsScreen/details_screen.dart';
-import 'package:cash_crop_version1/OrdersScreen/Orders.dart';
+import 'package:cash_crop_version1/Screens/Account%20Screen/account.dart';
+import 'package:cash_crop_version1/Screens/Edit%20Screen/edit_screen.dart';
 import 'package:cash_crop_version1/Screens/FavouritesScreen/favourites.dart';
 import 'package:cash_crop_version1/Screens/Home/splash_screen.dart';
 //import 'package:cash_crop_version1/Screens/authentication/loginSignUp/login_siginin.dart';
@@ -14,6 +13,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Screens/CartScreen/cartscreen.dart';
+import '../Screens/DetailsScreen/details_screen.dart';
+import '../Screens/OrdersScreen/Orders.dart';
 import '../Screens/PostScreen/post_screen.dart';
 import '../constants/routes.dart';
 import '../screens/authentication/Login/login.dart';
@@ -130,6 +132,15 @@ class MyApp extends StatelessWidget {
             name: AppRoutes.favoriteScreen,
             page: () => FavoriteScreen(),
             title: 'Favorites Screen'),
+        GetPage(
+            name: AppRoutes.accountScreen,
+            page: () => AccountPage(),
+            title: "accountScreen"),
+        GetPage(
+          name: AppRoutes.editScreen,
+          page: () => EditScreen(),
+          title: "Edit Screen",
+        ),
       ],
     );
   }

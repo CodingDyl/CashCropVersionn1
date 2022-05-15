@@ -1,8 +1,7 @@
 //import 'package:cash_crop_version1/Home/homepage.dart';
+import 'package:cash_crop_version1/constants/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../constants/routes.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({Key? key}) : super(key: key);

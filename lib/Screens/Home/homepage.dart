@@ -3,7 +3,7 @@
 import 'package:cash_crop_version1/screens/Home/components/coupon.dart';
 import 'package:cash_crop_version1/screens/Home/components/jobcard.dart';
 import 'package:cash_crop_version1/screens/Home/components/search.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

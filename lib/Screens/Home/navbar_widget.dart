@@ -102,7 +102,7 @@ class NavBar extends StatelessWidget {
               ),
               title: const Text("Manage my products",
                   style: TextStyle(fontSize: 18, color: Colors.white)),
-              onTap: () => print("Managed Tapped"),
+              onTap: () => Get.toNamed(AppRoutes.editScreen),
             ),
             ListTile(
               leading: const Icon(
@@ -166,7 +166,7 @@ class NavBar extends StatelessWidget {
               ),
               title: const Text("Account",
                   style: TextStyle(fontSize: 18, color: Colors.white)),
-              onTap: () => print("Account Tapped"),
+              onTap: () => Get.toNamed(AppRoutes.accountScreen),
             ),
             const Divider(),
             ListTile(

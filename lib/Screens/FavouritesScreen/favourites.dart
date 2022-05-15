@@ -16,6 +16,8 @@ class FavoriteScreen extends StatefulWidget {
 class _FavoriteScreenState extends State<FavoriteScreen> {
   List<Widget> itemsData = [];
 
+  bool isNull = true;
+
   void getPostsData() {
     List<dynamic> responseList = FOOD_DATA;
     List<Widget> listItems = [];
@@ -88,6 +90,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     });
     setState(() {
       itemsData = listItems;
+      isNull = false;
     });
   }
 
@@ -120,54 +123,65 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           ),
           centerTitle: false,
         ),
-        body: Container(
-          padding: const EdgeInsets.only(top: 20),
-          height: size.height,
-          child: Expanded(
-            child: ListView.builder(
-              itemCount: itemsData.length,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (_, index) {
-                if (itemsData.isEmpty) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "No Favorites have been selected...",
-                          style: ThemeText.cardTitleText,
-                        ),
-                        Center(
-                          child: SizedBox(
-                            height: 180,
-                            width: 180,
-                            child: Image.asset(
-                              "img_assets/bart_fav.png",
-                              fit: BoxFit.fill,
-                            ),
+        body: isNull
+            ? const CirlceScroll()
+            : Container(
+                padding: const EdgeInsets.only(top: 20),
+                height: size.height,
+                child: Expanded(
+                  child: ListView.builder(
+                    itemCount: itemsData.length,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (_, index) {
+                      if (itemsData.isNotEmpty) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(vertical: 20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "No Favorites have been selected...",
+                                style: ThemeText.cardTitleText,
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  height: 180,
+                                  width: 180,
+                                  child: Image.asset(
+                                    "img_assets/bart_fav.png",
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              const Center(
+                                child: CircularProgressIndicator(
+                                  value: 0.8,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      AppColors.primaryGreen),
+                                  backgroundColor: Colors.grey,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        const Center(
-                          child: CircularProgressIndicator(
-                            value: 0.8,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                AppColors.primaryGreen),
-                            backgroundColor: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                } else {
-                  return itemsData[index];
-                }
-              },
-            ),
-          ),
-        ),
+                        );
+                      } else {
+                        return itemsData[index];
+                      }
+                    },
+                  ),
+                ),
+              ),
       ),
     );
+  }
+}
+
+class CirlceScroll extends StatelessWidget {
+  const CirlceScroll({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: CircularProgressIndicator());
   }
 }

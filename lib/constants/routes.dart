@@ -12,4 +12,6 @@ class AppRoutes {
   static const loginSignUpScreen = '/login_signin';
   static const postScreen = '/post_screen';
   static const favoriteScreen = '/favorites';
+  static const accountScreen = '/accounts';
+  static const editScreen = '/edit';
 }
