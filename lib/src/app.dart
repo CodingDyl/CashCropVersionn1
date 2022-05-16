@@ -2,6 +2,7 @@ import 'package:cash_crop_version1/Screens/Account%20Screen/account.dart';
 import 'package:cash_crop_version1/Screens/Edit%20Screen/edit_screen.dart';
 import 'package:cash_crop_version1/Screens/FavouritesScreen/favourites.dart';
 import 'package:cash_crop_version1/Screens/Home/splash_screen.dart';
+import 'package:cash_crop_version1/Screens/Settings%20Screen/settings.dart';
 //import 'package:cash_crop_version1/Screens/authentication/loginSignUp/login_siginin.dart';
 //import 'package:cash_crop_version1/Screens/authentication/loginSignUp/login_siginin.dart';
 import 'package:cash_crop_version1/constants/constants.dart';
@@ -140,6 +141,11 @@ class MyApp extends StatelessWidget {
           name: AppRoutes.editScreen,
           page: () => EditScreen(),
           title: "Edit Screen",
+        ),
+        GetPage(
+          name: AppRoutes.settingsScreen,
+          page: () => const SettingsPage(),
+          title: 'Settings Page',
         ),
       ],
     );

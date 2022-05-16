@@ -14,4 +14,5 @@ class AppRoutes {
   static const favoriteScreen = '/favorites';
   static const accountScreen = '/accounts';
   static const editScreen = '/edit';
+  static const settingsScreen = '/settings';
 }

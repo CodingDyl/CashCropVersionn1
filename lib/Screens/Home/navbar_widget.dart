@@ -156,7 +156,7 @@ class NavBar extends StatelessWidget {
               ),
               title: const Text("Settings",
                   style: TextStyle(fontSize: 18, color: Colors.white)),
-              onTap: () => print("settings Tapped"),
+              onTap: () => Get.toNamed(AppRoutes.settingsScreen),
             ),
             ListTile(
               leading: const Icon(
