@@ -1,4 +1,4 @@
-const FOOD_DATA = [
+final FOOD_DATA = [
   {
     "name": "Freddies Tomatoes",
     "type": "Fruit",

@@ -21,7 +21,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   void getPostsData() {
     List<dynamic> responseList = FOOD_DATA;
     List<Widget> listItems = [];
-    responseList.forEach((post) {
+    for (var post in responseList) {
       listItems.add(Container(
         height: 150,
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -35,7 +35,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              post["image"],
+              post["image"]!,
               height: double.infinity,
             ),
             Column(
@@ -43,13 +43,13 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Column(children: [
-                  Text(post["name"], style: ThemeText.cardTitleText),
+                  Text(post["name"]!, style: ThemeText.cardTitleText),
                   const SizedBox(height: 5.0),
                   Text(
-                    post["type"],
+                    post["type"]!,
                     style: ThemeText.cardSubtitleText,
                   ),
-                  Text(post["farmer"], style: ThemeText.cardSubtitleText)
+                  Text(post["farmer"]!, style: ThemeText.cardSubtitleText)
                 ]),
                 Row(
                   children: [
@@ -87,7 +87,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           ],
         ),
       ));
-    });
+    }
     setState(() {
       itemsData = listItems;
       isNull = false;
