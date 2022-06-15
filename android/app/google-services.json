@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "536677751470",
+    "project_id": "cash-crop-777c9",
+    "storage_bucket": "cash-crop-777c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536677751470:android:78a6dd4119ccd660372b3f",
+        "android_client_info": {
+          "package_name": "com.example.cash_crop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536677751470-qoug4c4ke7jbgp4hk7ag40golh2vmv6j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEfdDw-ZWJ7qZEQSd986XKYRbGzTy89MI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536677751470-qoug4c4ke7jbgp4hk7ag40golh2vmv6j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
