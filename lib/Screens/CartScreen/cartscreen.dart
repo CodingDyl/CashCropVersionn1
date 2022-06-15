@@ -142,20 +142,23 @@ class CartScreen extends StatelessWidget {
                       height: 10.0,
                     ),
                     Center(
-                      child: Container(
-                        height: 50,
-                        width: size.width * 0.9,
-                        padding: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.grey,
+                      child: GestureDetector(
+                        onTap: () => Get.toNamed(AppRoutes.checkoutDetails),
+                        child: Container(
+                          height: 50,
+                          width: size.width * 0.9,
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.grey,
+                          ),
+                          child: const Center(
+                              child: Text("Checkout",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold))),
                         ),
-                        child: const Center(
-                            child: Text("Checkout",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold))),
                       ),
                     ),
                   ],

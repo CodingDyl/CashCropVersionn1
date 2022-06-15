@@ -1,7 +1,12 @@
 import 'package:cash_crop_version1/Screens/Account%20Screen/account.dart';
+import 'package:cash_crop_version1/Screens/Checkout%20Screen/checkoutConfirm.dart';
+import 'package:cash_crop_version1/Screens/Checkout%20Screen/checkoutDetails.dart';
 import 'package:cash_crop_version1/Screens/Edit%20Screen/edit_screen.dart';
 import 'package:cash_crop_version1/Screens/FavouritesScreen/favourites.dart';
 import 'package:cash_crop_version1/Screens/Home/splash_screen.dart';
+import 'package:cash_crop_version1/Screens/Payment%20Screen/paymentComplete.dart';
+import 'package:cash_crop_version1/Screens/Payment%20Screen/paymentConfirm.dart';
+import 'package:cash_crop_version1/Screens/Payment%20Screen/paymentMethod.dart';
 import 'package:cash_crop_version1/Screens/Settings%20Screen/settings.dart';
 //import 'package:cash_crop_version1/Screens/authentication/loginSignUp/login_siginin.dart';
 //import 'package:cash_crop_version1/Screens/authentication/loginSignUp/login_siginin.dart';
@@ -83,7 +88,7 @@ class MyApp extends StatelessWidget {
       // Define a function to handle named routes in order to support
       // Flutter web url navigation and deep linking.
 
-      home: const SplashScreen(),
+      home: const SplashScreen(), // splashScreen()
 
       getPages: [
         GetPage(
@@ -146,6 +151,31 @@ class MyApp extends StatelessWidget {
           name: AppRoutes.settingsScreen,
           page: () => const SettingsPage(),
           title: 'Settings Page',
+        ),
+        GetPage(
+          name: AppRoutes.checkoutDetails,
+          page: () => const CheckoutDetails(),
+          title: 'Checkout page',
+        ),
+        GetPage(
+          name: AppRoutes.checkoutConfirm,
+          page: () => const CheckoutConfirm(),
+          title: 'Checkout page',
+        ),
+        GetPage(
+          name: AppRoutes.paymentMethod,
+          page: () => const PaymentMethod(),
+          title: 'Payment Method',
+        ),
+        GetPage(
+          name: AppRoutes.paymentConfirm,
+          page: () => PaymentConfirm(),
+          title: 'Payment Confirm',
+        ),
+        GetPage(
+          name: AppRoutes.paymentComplete,
+          page: () => const PaymentComplete(),
+          title: 'Payment Complete',
         ),
       ],
     );

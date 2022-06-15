@@ -1,3 +1,5 @@
+import 'package:cash_crop_version1/Screens/Payment%20Screen/paymentMethod.dart';
+
 class AppRoutes {
   static const homeRoute = '/';
   static const loginSignupRoute = '/logins-signup';
@@ -15,4 +17,9 @@ class AppRoutes {
   static const accountScreen = '/accounts';
   static const editScreen = '/edit';
   static const settingsScreen = '/settings';
+  static const checkoutDetails = '/checkoutDetails';
+  static const checkoutConfirm = '/checkoutConfirm';
+  static const paymentMethod = '/paymentMethod';
+  static const paymentConfirm = '/paymentConfirm';
+  static const paymentComplete = '/paymentComplete';
 }
