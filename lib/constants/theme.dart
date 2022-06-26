@@ -7,7 +7,7 @@ class ThemeText {
       TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black);
 
   static const TextStyle cardText = TextStyle(
-      fontStyle: FontStyle.italic,
+      // fontStyle: FontStyle.italic,
       fontWeight: FontWeight.w700,
       color: AppColors.primaryGreen,
       fontSize: 16);

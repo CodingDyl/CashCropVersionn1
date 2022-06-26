@@ -5,12 +5,16 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../constants/routes.dart';
 
-class NavBar extends StatelessWidget {
-  const NavBar({Key? key}) : super(key: key);
+class NavBarDrawer extends StatelessWidget {
+  const NavBarDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     final Size size = MediaQuery.of(context).size;
+
+    const siz = 30.0;
+    const fsiz = 15.0;
     //bool active = true;
     return Drawer(
       child: Container(
@@ -34,19 +38,19 @@ class NavBar extends StatelessWidget {
                 width: 100,
                 child: ClipOval(
                   child: Image(
-                    image: AssetImage("img_assets/farm.jpeg"),
+                    image: AssetImage("assets/images/joji.jpg"),
                     fit: BoxFit.fill,
                   ),
                 ),
               ),
-              accountName: const Text(
-                "Daniel Mnjuzi",
+              accountName: Text(
+                user.displayName.toString(),
                 style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              accountEmail: const Text("Farmer"),
+              accountEmail: Text(user.email.toString()),
               decoration: BoxDecoration(
                 color: const Color(0xFF0EAE30).withOpacity(0.6),
                 image: DecorationImage(
@@ -62,64 +66,64 @@ class NavBar extends StatelessWidget {
             ListTile(
               leading: const Icon(
                 Icons.home_outlined,
-                size: 35,
+                size: siz,
                 color: Color(0xFF50DFB3),
               ),
               title: const Text("Home",
-                  style: TextStyle(fontSize: 18, color: Color(0xFF50DFB3))),
+                  style: TextStyle(fontSize: fsiz, color: Color(0xFF50DFB3))),
               onTap: () => Get.toNamed(AppRoutes.homeScreenRoute),
             ),
             ListTile(
               leading: const Icon(
                 Icons.favorite_border_outlined,
-                size: 35,
+                size: siz,
                 color: Colors.white,
               ),
               title: const Text("Favorite",
-                  style: TextStyle(fontSize: 18, color: Colors.white)),
+                  style: TextStyle(fontSize: fsiz, color: Colors.white)),
               onTap: () => Get.toNamed(AppRoutes.favoriteScreen),
             ),
             ListTile(
               leading: const Icon(
                 Icons.camera_alt_outlined,
-                size: 35,
+                size: siz,
                 color: Colors.white,
               ),
               title: const Text("Post an ad",
-                  style: TextStyle(fontSize: 18, color: Colors.white)),
+                  style: TextStyle(fontSize: fsiz, color: Colors.white)),
               onTap: () => Get.toNamed(AppRoutes.postScreen),
             ),
-            Divider(
-              color: Colors.black.withOpacity(0.3),
+            const Divider(
+              color: Colors.white,
             ),
             ListTile(
               leading: const Icon(
                 Icons.edit,
-                size: 35,
+                size: siz,
                 color: Colors.white,
               ),
               title: const Text("Manage my products",
-                  style: TextStyle(fontSize: 18, color: Colors.white)),
+                  style: TextStyle(fontSize: fsiz, color: Colors.white)),
               onTap: () => Get.toNamed(AppRoutes.editScreen),
             ),
             ListTile(
               leading: const Icon(
                 Icons.account_balance_wallet_outlined,
-                size: 35,
+                size: siz,
                 color: Colors.white,
               ),
               title: const Text("Orders",
-                  style: TextStyle(fontSize: 18, color: Colors.white)),
+                  style: TextStyle(fontSize: fsiz, color: Colors.white)),
               onTap: () => Get.toNamed(AppRoutes.orderPage),
             ),
             ListTile(
               leading: const Icon(
                 Icons.shopping_bag_outlined,
-                size: 35,
+                size: siz,
                 color: Colors.white,
               ),
               title: const Text("Cart",
-                  style: TextStyle(fontSize: 18, color: Colors.white)),
+                  style: TextStyle(fontSize: fsiz, color: Colors.white)),
               onTap: () => Get.toNamed(AppRoutes.cartScreen),
               trailing: Container(
                 height: 20,
@@ -133,50 +137,51 @@ class NavBar extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 12))),
               ),
             ),
-            Divider(
-              color: Colors.black.withOpacity(0.3),
+            const Divider(
+              color: Colors.white,
             ),
             ListTile(
               leading: const Icon(
                 Icons.category_outlined,
-                size: 35,
+                size: siz,
                 color: Colors.white,
               ),
               title: const Text("Categories",
-                  style: TextStyle(fontSize: 18, color: Colors.white)),
+                  style: TextStyle(fontSize: fsiz, color: Colors.white)),
               onTap: () => print("Cat Tapped"),
             ),
             ListTile(
               leading: const Icon(
                 Icons.settings_outlined,
-                size: 35,
+                size: siz,
                 color: Colors.white,
               ),
               title: const Text("Settings",
-                  style: TextStyle(fontSize: 18, color: Colors.white)),
+                  style: TextStyle(fontSize: fsiz, color: Colors.white)),
               onTap: () => Get.toNamed(AppRoutes.settingsScreen),
             ),
             ListTile(
               leading: const Icon(
                 Icons.perm_identity_outlined,
-                size: 35,
+                size: siz,
                 color: Colors.white,
               ),
               title: const Text("Account",
-                  style: TextStyle(fontSize: 18, color: Colors.white)),
+                  style: TextStyle(fontSize: fsiz, color: Colors.white)),
               onTap: () => Get.toNamed(AppRoutes.accountScreen),
             ),
             const Divider(),
             ListTile(
                 leading: const Icon(
                   Icons.exit_to_app_outlined,
-                  size: 35,
+                  size: siz,
                   color: Colors.white,
                 ),
                 title: const Text("Log Out",
-                    style: TextStyle(fontSize: 18, color: Colors.white)),
+                    style: TextStyle(fontSize: fsiz, color: Colors.white)),
                 onTap: () {
                   FirebaseAuth.instance.signOut();
+                  Get.offAllNamed(AppRoutes.loginRoute);
                   // Navigator.of(context).pushReplacement(
                   // MaterialPageRoute(builder: (_) => const LoginSigninScreen())),
                 }),
@@ -188,14 +193,10 @@ class NavBar extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ClipOval(
-                    child: Container(
-                        height: 60,
-                        width: 60,
-                        padding: EdgeInsets.zero,
-                        child: const Image(
-                          image: AssetImage("img_assets/CashCrop.png"),
-                        )),
+                  SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: Image.asset("assets/images/logo/logo.png"),
                   ),
                   Text("CashCrop",
                       style: GoogleFonts.cookie().copyWith(

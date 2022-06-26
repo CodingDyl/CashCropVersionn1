@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../constants/constants.dart';
 import '../../../constants/routes.dart';
+import '../../../providers/user.dart';
 import '../../../src/app.dart';
 
 import '../../widgets/signup_button.dart';
@@ -40,12 +42,25 @@ class _SignupScreenState extends State<SignupScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         });
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
+
+      User updateUser = FirebaseAuth.instance.currentUser!;
+
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(updateUser.uid)
+          .set({
+        'username': nameController.text.trim(),
+        'email': emailController.text.trim(),
+      });
+      updateUser.updateDisplayName(nameController.text);
+
+      Get.offAllNamed(AppRoutes.mainScreen);
     } on FirebaseAuthException catch (e) {
       print(e);
 
@@ -76,7 +91,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(top: 20),
+              // padding: const EdgeInsets.only(top: 20),
               width: size.width,
               height: size.height,
               child: SingleChildScrollView(

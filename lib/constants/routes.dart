@@ -1,6 +1,7 @@
+import 'package:cash_crop/screens/authentication/Login/login_screen.dart';
+
 class AppRoutes {
   static const homeRoute = '/';
-  static const loginSignupRoute = '/logins-signup';
   static const loginRoute = '/login';
   static const signupRoute = '/signup';
   static const verifyEmailRoute = '/signup/verify-email';
@@ -16,6 +17,7 @@ class AppRoutes {
   static const editScreen = '/edit';
   static const settingsScreen = '/settings';
   static const mainScreen = '/main';
+  static const addProductScreen = '/addProductScreen';
 
   static const onboard1Route = '/onboarding-1';
   static const onboard2Route = '/onboarding-2';

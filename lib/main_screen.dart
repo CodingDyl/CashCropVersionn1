@@ -1,4 +1,7 @@
 import 'package:cash_crop/screens/Account%20Screen/account.dart';
+import 'package:cash_crop/screens/Post%20Screen/widgets/uploadImage.dart';
+import 'package:cash_crop/src/settings/settings_Screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,11 +22,11 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
 
-  final screens = const [
+  final screens = [
     HomeScreen(),
-    FavoriteScreen(),
-    AccountPage(),
-    SettingsScreen()
+    ImageUploads(),
+    const AccountPage(),
+    const SettingScreen()
   ];
   @override
   Widget build(BuildContext context) {
@@ -66,7 +69,8 @@ class _MainScreenState extends State<MainScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.toNamed(AppRoutes.postScreen);
+            // Get.toNamed(AppRoutes.postScreen);
+            Get.toNamed(AppRoutes.addProductScreen);
           },
           child: const Icon(
             Icons.add,

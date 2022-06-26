@@ -1,14 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/constants.dart';
 import '../../../constants/routes.dart';
+import '../../../providers/product.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
     Key? key,
+    required this.product,
   }) : super(key: key);
-
+  final DocumentSnapshot product;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -36,9 +39,9 @@ class ProductItem extends StatelessWidget {
                     topLeft: Radius.circular(12),
                     topRight: Radius.circular(12)),
                 child: Hero(
-                  tag: 'tomato',
-                  child: Image.asset(
-                    "assets/images/products/tomato.jpeg",
+                  tag: product.id,
+                  child: Image.network(
+                    product['imageUrl'],
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -53,29 +56,31 @@ class ProductItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        product["title"],
+                        softWrap: false,
+                        overflow: TextOverflow.fade,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const Text(
-                                "Tomatoes",
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(height: 5),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: const <Widget>[
-                                  Icon(Icons.location_on,
-                                      size: 20, color: Colors.black26),
-                                  Text("Glenvista",
-                                      style: TextStyle(color: Colors.black26)),
-                                ],
-                              ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              const Icon(Icons.location_on,
+                                  size: 18, color: Colors.black26),
+                              Text(product['location'],
+                                  style:
+                                      const TextStyle(color: Colors.black26)),
                             ],
                           ),
                           Icon(Icons.favorite_border,
@@ -86,25 +91,25 @@ class ProductItem extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(children: const <Widget>[
+                        Row(children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(left: 10),
+                            padding: const EdgeInsets.only(left: 10),
                             child: Text(
-                              "R27.50",
-                              style: TextStyle(
+                              "R${product['price'].toString()}",
+                              style: const TextStyle(
                                 color: AppColors.primaryGreen,
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text(
-                            "/kg",
-                            style:
-                                TextStyle(fontSize: 13, color: Colors.black26),
+                            "/${product['measurement']}",
+                            style: const TextStyle(
+                                fontSize: 13, color: Colors.black26),
                           ),
                         ]),
                         Align(

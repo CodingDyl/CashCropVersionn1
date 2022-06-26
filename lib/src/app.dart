@@ -1,3 +1,4 @@
+import 'package:cash_crop/screens/Settings/settingsScreen.dart';
 import 'package:cash_crop/toplevel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -7,7 +8,20 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/constants.dart';
 import '../constants/routes.dart';
+import '../main_screen.dart';
+import '../screens/Account Screen/account.dart';
+import '../screens/Add Product Screen/add_product_screen.dart';
+import '../screens/CartScreen/cartscreen.dart';
+import '../screens/DetailsScreen/details_screen.dart';
+import '../screens/Edit Screen/edit_screen.dart';
+import '../screens/FavouritesScreen/favourites.dart';
+import '../screens/Order Screen/orders_screen.dart';
+import '../screens/Post Screen/post_screen.dart';
+import '../screens/authentication/Login/login_screen.dart';
+import '../screens/authentication/Signup/signup_screen.dart';
 import '../screens/authentication/utils.dart';
+import '../screens/home/components/splash_screen.dart';
+import '../screens/home/home_screen.dart';
 import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
@@ -75,8 +89,8 @@ class MyApp extends StatelessWidget {
               primaryColor: AppColors.primaryGreen,
               accentColor: AppColors.secondaryLime,
             ),
-            darkTheme: ThemeData.dark(),
-            themeMode: settingsController.themeMode,
+            darkTheme: ThemeData.light(),
+            // themeMode: settingsController.themeMode,
 
             // Define a function to handle named routes in order to support
             // Flutter web url navigation and deep linking.
@@ -98,75 +112,84 @@ class MyApp extends StatelessWidget {
             // home: SplashScreen(),
             home: TopLevel(),
 
-            //   getPages: [
-            // GetPage(
-            //   name: AppRoutes.loginRoute,
-            //   page: () => const LoginScreen(),
-            //   title: 'Login',
-            // ),
-            // GetPage(
-            //   name: AppRoutes.signupRoute,
-            //   page: () => const SignupScreen(),
-            //   title: 'Signup',
-            // ),
-            // GetPage(
-            //   name: AppRoutes.verifyEmailRoute,
-            //   page: () => const VerifyEmailScreen(),
-            //   title: 'Verify Email',
-            // ),
-            // GetPage(
-            //   name: AppRoutes.homeScreenRoute,
-            //   page: () => const HomeScreen(),
-            //   title: 'Home Page',
-            // ),
-            // GetPage(
-            //   name: AppRoutes.mainScreen,
-            //   page: () => const MainScreen(),
-            //   title: 'Main Page',
-            // ),
-            // GetPage(
-            //     name: AppRoutes.splashScreen,
-            //     page: () => const SplashScreen(),
-            //     title: 'Splash Screen'),
-            // GetPage(
-            //     name: AppRoutes.cartScreen,
-            //     page: () => const CartScreen(),
-            //     title: 'Cart Screen'),
-            // GetPage(
-            //   name: AppRoutes.orderPage,
-            //   page: () => const OrderPage(),
-            //   title: 'Orders Page',
-            // ),
-            // GetPage(
-            //   name: AppRoutes.detailsScreen,
-            //   page: () => const DetailsPage(),
-            //   title: 'Details Screen',
-            // ),
-            // // GetPage(
-            // //   name: AppRoutes.postScreen,
-            // //   page: () => const PostScreen(),
-            // //   title: 'Post Screen',
-            // // ),
-            // GetPage(
-            //     name: AppRoutes.favoriteScreen,
-            //     page: () => const FavoriteScreen(),
-            //     title: 'Favorites Screen'),
-            // GetPage(
-            //     name: AppRoutes.accountScreen,
-            //     page: () => const AccountPage(),
-            //     title: "accountScreen"),
-            // GetPage(
-            //   name: AppRoutes.editScreen,
-            //   page: () => EditScreen(),
-            //   title: "Edit Screen",
-            // ),
-            // // GetPage(
-            // //   name: AppRoutes.settingsScreen,
-            // //   page: () => const SettingsPage(),
-            // //   title: 'Settings Page',
-            // // ),
-            //   },
-            // );
+            getPages: [
+              GetPage(
+                name: AppRoutes.addProductScreen,
+                page: () => const AddProductScreen(),
+                title: 'Add Product',
+              ),
+              GetPage(
+                name: AppRoutes.loginRoute,
+                page: () => const LoginScreen(),
+                title: 'Login',
+              ),
+              GetPage(
+                name: AppRoutes.signupRoute,
+                page: () => const SignupScreen(),
+                title: 'Signup',
+              ),
+              // GetPage(
+              //   name: AppRoutes.verifyEmailRoute,
+              //   page: () => const VerifyEmailScreen(),
+              //   title: 'Verify Email',
+              // ),
+              GetPage(
+                name: AppRoutes.homeScreenRoute,
+                page: () => HomeScreen(),
+                title: 'Home Page',
+              ),
+              GetPage(
+                name: AppRoutes.mainScreen,
+                page: () => const MainScreen(),
+                title: 'Main Page',
+              ),
+              GetPage(
+                  name: AppRoutes.splashScreen,
+                  page: () => const SplashScreen(),
+                  title: 'Splash Screen'),
+              GetPage(
+                  name: AppRoutes.cartScreen,
+                  page: () => const CartScreen(),
+                  title: 'Cart Screen'),
+              GetPage(
+                name: AppRoutes.orderPage,
+                page: () => const OrderPage(),
+                title: 'Orders Page',
+              ),
+              GetPage(
+                name: AppRoutes.detailsScreen,
+                page: () => const DetailsPage(),
+                title: 'Details Screen',
+              ),
+              // GetPage(
+              //   name: AppRoutes.postScreen,
+              //   page: () => const PostScreen(),
+              //   title: 'Post Screen',
+              // ),
+              GetPage(
+                  name: AppRoutes.favoriteScreen,
+                  page: () => const FavoriteScreen(),
+                  title: 'Favorites Screen'),
+              GetPage(
+                  name: AppRoutes.accountScreen,
+                  page: () => const AccountPage(),
+                  title: "accountScreen"),
+              GetPage(
+                name: AppRoutes.editScreen,
+                page: () => EditScreen(),
+                title: "Edit Screen",
+              ),
+              GetPage(
+                name: AppRoutes.settingsScreen,
+                page: () => const SettingsScreen(),
+                title: 'Settings Page',
+              ),
+              GetPage(
+                name: AppRoutes.mainScreen,
+                page: () => const MainScreen(),
+                title: 'Main Screen',
+              ),
+            ],
           );
         });
   }
