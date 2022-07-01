@@ -17,7 +17,7 @@ class AccountWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(45),
               child: Image.asset(
-                "img_assets/farm_boy.jpeg",
+                "assets/images/joji.jpg",
                 height: 80,
                 width: 80,
                 fit: BoxFit.fill,
@@ -43,59 +43,66 @@ class AccountWidget extends StatelessWidget {
         ),
         Divider(
           height: 5,
-          thickness: 2,
+          thickness: 1,
           color: Colors.grey.withOpacity(.55),
         ),
         const SizedBox(
           height: 20,
         ),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: const [
-          Padding(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Padding(
               padding: EdgeInsets.only(left: 20),
               child: Text(
                 "Account Information",
                 style: TextStyle(color: Colors.black, fontSize: 22),
-              )),
-          Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: Icon(
-              Icons.arrow_forward,
-              color: Colors.black,
-              size: 30,
+              ),
             ),
-          )
-        ]),
+            Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: Icon(
+                Icons.arrow_forward,
+                color: Colors.black,
+                size: 30,
+              ),
+            ),
+          ],
+        ),
         const SizedBox(height: 20),
         Divider(
           height: 5,
-          thickness: 2,
+          thickness: 1,
           color: Colors.grey.withOpacity(.55),
         ),
         const SizedBox(
           height: 20,
         ),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: const [
-          Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Text(
-                "Legal",
-                style: TextStyle(color: Colors.black, fontSize: 22),
-              )),
-          Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: Icon(
-              Icons.arrow_forward,
-              color: Colors.black,
-              size: 30,
-            ),
-          )
-        ]),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Text(
+                  "Legal",
+                  style: TextStyle(color: Colors.black, fontSize: 22),
+                )),
+            Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: Icon(
+                Icons.arrow_forward,
+                color: Colors.black,
+                size: 30,
+              ),
+            )
+          ],
+        ),
         const SizedBox(
           height: 20,
         ),
         Divider(
           height: 5,
-          thickness: 2,
+          thickness: 1,
           color: Colors.grey.withOpacity(.55),
         ),
         const SizedBox(
@@ -105,32 +112,27 @@ class AccountWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * 0.25),
-              child: Row(
-                children: [
-                  Image.asset(
-                    "img_assets/CashCrop.png",
-                    height: 60,
-                    width: 60,
-                    fit: BoxFit.fill,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text("CashCrop",
-                      style: GoogleFonts.cookie(
-                          textStyle:
-                              TextStyle(fontSize: 42, color: Colors.black))),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/images/logo/logo.png",
+                  height: 60,
+                  width: 60,
+                  fit: BoxFit.fill,
+                ),
+                const SizedBox(width: 5),
+                Text("CashCrop",
+                    style: GoogleFonts.cookie(
+                        textStyle:
+                            TextStyle(fontSize: 42, color: Colors.black))),
+              ],
             ),
             const SizedBox(
               height: 5,
             ),
             Text(
-              "Copyright 2022 Marketplaats B.V.",
+              "Copyright 2022 Marketplace B.V.",
               style:
                   TextStyle(color: Colors.grey.withOpacity(.55), fontSize: 12),
             ),

@@ -26,6 +26,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final _measurementController1 = TextEditingController();
   final _locationController1 = TextEditingController();
 
+  final formKey = GlobalKey<FormState>();
+
   @override
   void dispose() {
     _titleController1.dispose();
@@ -41,8 +43,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   bool isLoading = false;
   void _pickedImage(XFile image) {
+    print("THIS IS THE VALUE OF IMAGE : " + image.path);
     setState(() {
-      print("THIS IS THE VALUE OF IMAGE : " + image.path);
       _uploadImageUser = image;
     });
   }
@@ -61,15 +63,18 @@ class _AddProductScreenState extends State<AddProductScreen> {
     setState(() {
       isLoading = true;
     });
+    print(' HERE IS SOME INFORMSTION HERE ');
     final docUser = FirebaseFirestore.instance.collection('Products').doc();
     Reference reference = storageRef.ref().child('Users');
     UploadTask uploadTask = reference.putFile(File(_uploadImageUser!.path));
     uploadTask.snapshotEvents.listen((event) {
-      print(event.bytesTransferred.toString());
+      print(
+          ' HERE IS SOME INFORMSTION HERE ${event.bytesTransferred.toString()}');
     });
 
     await uploadTask.whenComplete(() async {
       var uploadPath = await uploadTask.snapshot.ref.getDownloadURL();
+      print('THE IMAGE PATH : $uploadPath');
 
       // Insert RECORD INTO DATABASE HERE
       if (uploadPath.isNotEmpty) {

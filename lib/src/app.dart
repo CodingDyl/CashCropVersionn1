@@ -1,3 +1,4 @@
+import 'package:cash_crop/screens/Add%20Product%20Screen/adddProductScree.dart';
 import 'package:cash_crop/screens/Settings/settingsScreen.dart';
 import 'package:cash_crop/toplevel.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../bindings/initialBidings.dart';
 import '../constants/constants.dart';
 import '../constants/routes.dart';
 import '../main_screen.dart';
@@ -109,6 +111,8 @@ class MyApp extends StatelessWidget {
             //       }
             //     },
             //   );
+            initialBinding: InitialBinding(),
+
             // home: SplashScreen(),
             home: TopLevel(),
 
@@ -116,6 +120,11 @@ class MyApp extends StatelessWidget {
               GetPage(
                 name: AppRoutes.addProductScreen,
                 page: () => const AddProductScreen(),
+                title: 'Add Product',
+              ),
+              GetPage(
+                name: AppRoutes.addProductScreen2,
+                page: () => AddProductScreen2(),
                 title: 'Add Product',
               ),
               GetPage(

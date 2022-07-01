@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) {
-          return CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         });
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -44,8 +44,8 @@ class _LoginScreenState extends State<LoginScreen> {
       print(e);
       Utils.showSnackBar(e.message);
     }
-
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    Get.offNamed(AppRoutes.mainScreen);
+    // navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
   @override
@@ -76,40 +76,12 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 20,
-                    ),
-                    width: size.width,
-                    // height: size.height * .13,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        GestureDetector(
-                          onTap: () => Get.back(),
-                          child: Container(
-                            height: 50,
-                            width: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                            ),
-                            child: const Icon(
-                              Icons.arrow_back_ios_new,
-                              color: AppColors.primaryGreen,
-                            ),
-                          ),
-                        ),
-                        Image.asset(
-                          'assets/images/logo/logo.png',
-                          height: 80,
-                        ),
-                        const SizedBox(width: 50),
-                      ],
-                    ),
+                  const SizedBox(height: 20),
+                  Image.asset(
+                    'assets/images/logo/logo.png',
+                    height: 80,
                   ),
+                  const SizedBox(height: 20),
                   Text(
                     'CashCrop',
                     style: Theme.of(context)

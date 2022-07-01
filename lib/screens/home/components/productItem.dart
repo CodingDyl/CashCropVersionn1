@@ -17,7 +17,7 @@ class ProductItem extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoutes.detailsScreen);
+        Get.toNamed(AppRoutes.detailsScreen, arguments: {'product': product});
       },
       child: Container(
         height: size.height * 0.4,
@@ -39,7 +39,7 @@ class ProductItem extends StatelessWidget {
                     topLeft: Radius.circular(12),
                     topRight: Radius.circular(12)),
                 child: Hero(
-                  tag: product.id,
+                  tag: product['id'],
                   child: Image.network(
                     product['imageUrl'],
                     fit: BoxFit.cover,

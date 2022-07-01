@@ -18,6 +18,7 @@ class AppRoutes {
   static const settingsScreen = '/settings';
   static const mainScreen = '/main';
   static const addProductScreen = '/addProductScreen';
+  static const addProductScreen2 = '/addProductScreen2';
 
   static const onboard1Route = '/onboarding-1';
   static const onboard2Route = '/onboarding-2';

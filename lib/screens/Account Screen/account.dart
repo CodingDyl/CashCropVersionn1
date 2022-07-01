@@ -12,7 +12,7 @@ class AccountPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
-          onTap: () => Get.toNamed(AppRoutes.homeScreenRoute),
+          onTap: () => Get.toNamed(AppRoutes.mainScreen),
           child: const Icon(
             Icons.arrow_back,
             size: 32,

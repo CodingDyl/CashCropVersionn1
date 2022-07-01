@@ -98,37 +98,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      // padding: const EdgeInsets.only(left: 20),
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      width: size.width,
-                      // height: size.height * .13,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          GestureDetector(
-                            onTap: () => Get.back(),
-                            child: Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                              ),
-                              child: const Icon(
-                                Icons.arrow_back_ios_new,
-                                color: AppColors.primaryGreen,
-                              ),
-                            ),
-                          ),
-                          Image.asset(
-                            'assets/images/logo/logo.png',
-                            height: 70,
-                          ),
-                          const SizedBox(width: 50),
-                        ],
-                      ),
+                    const SizedBox(height: 20),
+                    Image.asset(
+                      'assets/images/logo/logo.png',
+                      height: 70,
                     ),
                     const SizedBox(height: 10),
                     Text(

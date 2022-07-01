@@ -70,7 +70,7 @@ class _MainScreenState extends State<MainScreen> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // Get.toNamed(AppRoutes.postScreen);
-            Get.toNamed(AppRoutes.addProductScreen);
+            Get.toNamed(AppRoutes.addProductScreen2);
           },
           child: const Icon(
             Icons.add,
