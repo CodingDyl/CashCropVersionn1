@@ -114,7 +114,7 @@ class MyApp extends StatelessWidget {
             initialBinding: InitialBinding(),
 
             // home: SplashScreen(),
-            home: TopLevel(),
+            home: const TopLevel(),
 
             getPages: [
               GetPage(

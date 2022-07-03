@@ -1,4 +1,5 @@
 import 'package:cash_crop/providers/product.dart';
+import 'package:cash_crop/screens/CartScreen/controller/cart_controller.dart';
 import 'package:cash_crop/screens/home/components/navbar_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,7 +14,7 @@ import 'components/productItem.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
-  
+
   Stream<List<Product>> readProducts() => FirebaseFirestore.instance
       .collection('Products')
       .snapshots()
@@ -24,14 +25,15 @@ class HomeScreen extends StatelessWidget {
       FirebaseFirestore.instance.collection('Products');
   @override
   Widget build(BuildContext context) {
-
     //Get device width and height
     Size size = MediaQuery.of(context).size;
+
+    late CartController item = Get.put(CartController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFFF2F2F2),
         //Menu drawer
-        drawer: const  NavBarDrawer(),
+        drawer: const NavBarDrawer(),
         appBar: AppBar(
           toolbarHeight: 70,
           backgroundColor: AppColors.primaryGreen,
@@ -135,7 +137,6 @@ class HomeScreen extends StatelessWidget {
                                   crossAxisSpacing: 10.0,
                                   mainAxisSpacing: 10.0,
                                   mainAxisExtent: size.height * .4),
-
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
                             final DocumentSnapshot documentSnapshot =

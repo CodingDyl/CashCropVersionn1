@@ -49,5 +49,7 @@
 		<string> Gimme access to let you pick an image</string>
 		<key>NSMicrophoneUsageDescription</key>
 		<string> Gimme access to let you pick an image</string>
-	</dict>
+		<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+</dict>
 </plist>

@@ -1,3 +1,4 @@
+import 'package:cash_crop/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,6 +6,25 @@ import '../../../providers/product.dart';
 
 class CartController extends GetxController {
   var _products = {}.obs;
+  var items = 0.obs;
+
+  //simple add and remove
+  void increase() {
+    items.value++;
+    Get.snackbar("Item Added To Cart", "Your item has been added to the cart",
+        duration: const Duration(seconds: 3),
+        isDismissible: true,
+        icon: const Icon(Icons.shopping_cart),
+        barBlur: 20.0,
+        backgroundColor: AppColors.primaryGreen);
+  }
+
+  void decrease() {
+    items.value--;
+    if (items < 0) {
+      items == 0;
+    }
+  }
 
   void addProduct(product) {
     if (_products.containsKey(product)) {

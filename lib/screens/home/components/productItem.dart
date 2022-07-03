@@ -1,3 +1,4 @@
+import 'package:cash_crop/screens/CartScreen/controller/cart_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,18 +7,26 @@ import '../../../constants/constants.dart';
 import '../../../constants/routes.dart';
 import '../../../providers/product.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
   const ProductItem({
     Key? key,
     required this.product,
   }) : super(key: key);
   final DocumentSnapshot product;
+
+  @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
+  final CartController item = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoutes.detailsScreen, arguments: {'product': product});
+        Get.toNamed(AppRoutes.detailsScreen,
+            arguments: {'product': widget.product});
       },
       child: Container(
         height: size.height * 0.4,
@@ -39,9 +48,9 @@ class ProductItem extends StatelessWidget {
                     topLeft: Radius.circular(12),
                     topRight: Radius.circular(12)),
                 child: Hero(
-                  tag: product['id'],
+                  tag: widget.product['id'],
                   child: Image.network(
-                    product['imageUrl'],
+                    widget.product['imageUrl'],
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -58,7 +67,7 @@ class ProductItem extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Text(
-                        product["title"],
+                        widget.product["title"],
                         softWrap: false,
                         overflow: TextOverflow.fade,
                         style: const TextStyle(
@@ -78,7 +87,7 @@ class ProductItem extends StatelessWidget {
                             children: <Widget>[
                               const Icon(Icons.location_on,
                                   size: 18, color: Colors.black26),
-                              Text(product['location'],
+                              Text(widget.product['location'],
                                   style:
                                       const TextStyle(color: Colors.black26)),
                             ],
@@ -95,7 +104,7 @@ class ProductItem extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: Text(
-                              "R${product['price'].toString()}",
+                              "R${widget.product['price'].toString()}",
                               style: const TextStyle(
                                 color: AppColors.primaryGreen,
                                 fontSize: 14,
@@ -107,27 +116,34 @@ class ProductItem extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            "/${product['measurement']}",
+                            "/${widget.product['measurement']}",
                             style: const TextStyle(
                                 fontSize: 13, color: Colors.black26),
                           ),
                         ]),
                         Align(
                           alignment: Alignment.bottomLeft,
-                          child: Container(
-                            width: 80,
-                            height: 40,
-                            margin: const EdgeInsets.only(right: 0),
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  bottomRight: Radius.circular(12)),
-                              color: AppColors.primaryGreen,
-                            ),
-                            child: const Center(
-                              child: Icon(
-                                Icons.add_shopping_cart,
-                                color: Colors.white,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                item.increase();
+                              });
+                            },
+                            child: Container(
+                              width: 80,
+                              height: 40,
+                              margin: const EdgeInsets.only(right: 0),
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(12),
+                                    bottomRight: Radius.circular(12)),
+                                color: AppColors.primaryGreen,
+                              ),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.add_shopping_cart,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
