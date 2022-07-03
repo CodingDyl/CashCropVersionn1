@@ -1,4 +1,6 @@
+import 'package:cash_crop_version1/Screens/FavouritesScreen/favouriteCardWidget.dart';
 import 'package:cash_crop_version1/constants/constants.dart';
+import 'package:cash_crop_version1/constants/favouriteController.dart';
 import 'package:cash_crop_version1/constants/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,89 +17,11 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   List<Widget> itemsData = [];
-
-  bool isNull = true;
-
-  void getPostsData() {
-    List<dynamic> responseList = FOOD_DATA;
-    List<Widget> listItems = [];
-    for (var post in responseList) {
-      listItems.add(Container(
-        height: 150,
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0)
-            ]),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(
-              post["image"]!,
-              height: double.infinity,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(children: [
-                  Text(post["name"]!, style: ThemeText.cardTitleText),
-                  const SizedBox(height: 5.0),
-                  Text(
-                    post["type"]!,
-                    style: ThemeText.cardSubtitleText,
-                  ),
-                  Text(post["farmer"]!, style: ThemeText.cardSubtitleText)
-                ]),
-                Row(
-                  children: [
-                    const Text(
-                      "R ",
-                      style: ThemeText.cardSubtitleText,
-                    ),
-                    Text(
-                      "\$ ${post["price"]}",
-                      style: ThemeText.cardSubtitleText,
-                    ),
-                    const SizedBox(
-                      width: 2,
-                    ),
-                    Text("\$ ${post["weight"]}",
-                        style: ThemeText.cardWeightText),
-                    Text(" kg", style: ThemeText.cardWeightText),
-                  ],
-                ),
-                const Align(
-                  alignment: Alignment.bottomRight,
-                  child: SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
-      ));
-    }
-    setState(() {
-      itemsData = listItems;
-      isNull = false;
-    });
-  }
+  final FavouriteController fav = Get.put(FavouriteController());
 
   @override
   void initState() {
     super.initState();
-    getPostsData();
   }
 
   @override
@@ -123,55 +47,21 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           ),
           centerTitle: false,
         ),
-        body: isNull
-            ? const CirlceScroll()
-            : Container(
+        body: fav != 0
+            ? Container(
                 padding: const EdgeInsets.only(top: 20),
                 height: size.height,
                 child: Expanded(
-                  child: ListView.builder(
-                    itemCount: itemsData.length,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (_, index) {
-                      if (itemsData.isNotEmpty) {
-                        return Container(
-                          padding: const EdgeInsets.symmetric(vertical: 20.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "No Favorites have been selected...",
-                                style: ThemeText.cardTitleText,
-                              ),
-                              Center(
-                                child: SizedBox(
-                                  height: 180,
-                                  width: 180,
-                                  child: Image.asset(
-                                    "img_assets/bart_fav.png",
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
-                              const Center(
-                                child: CircularProgressIndicator(
-                                  value: 0.8,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      AppColors.primaryGreen),
-                                  backgroundColor: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else {
-                        return itemsData[index];
-                      }
-                    },
+                  child: ListView(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    children: const [
+                      FavouriteWidget(),
+                    ],
                   ),
                 ),
-              ),
+              )
+            : const CirlceScroll(),
       ),
     );
   }

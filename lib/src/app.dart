@@ -117,7 +117,7 @@ class MyApp extends StatelessWidget {
             title: 'Splash Screen'),
         GetPage(
             name: AppRoutes.cartScreen,
-            page: () => const CartScreen(),
+            page: () => CartScreen(),
             title: 'Cart Screen'),
         GetPage(
           name: AppRoutes.orderPage,

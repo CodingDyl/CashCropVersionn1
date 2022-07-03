@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/routes.dart';
 import '../widgets/signup_button.dart';
+import 'package:http/http.dart' as http;
 
 class LoginSignupForm extends StatefulWidget {
   const LoginSignupForm({Key? key}) : super(key: key);
@@ -127,3 +128,5 @@ class _LoginSignupFormState extends State<LoginSignupForm> {
     );
   }
 }
+
+Future<void> login() async {}

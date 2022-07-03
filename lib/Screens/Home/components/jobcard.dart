@@ -1,4 +1,8 @@
 //import 'package:cash_crop_version1/DetailsScreen/details_screen.dart';
+import 'package:cash_crop_version1/constants/cartController.dart';
+import 'package:cash_crop_version1/constants/constants.dart';
+import 'package:cash_crop_version1/constants/favouriteController.dart';
+import 'package:cash_crop_version1/constants/itemController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,14 +36,23 @@ class cardBuilder extends StatelessWidget {
 }
 
 // ignore: camel_case_types
-class buildList extends StatelessWidget {
+class buildList extends StatefulWidget {
   const buildList({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<buildList> createState() => _buildListState();
+}
+
+class _buildListState extends State<buildList> {
+  @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final cartController cart = Get.put(cartController());
+    final itemsController i = Get.put(itemsController());
+    final FavouriteController fav = Get.put(FavouriteController());
+    bool favChoose = false;
     return GestureDetector(
       onTap: () {
         Get.toNamed(AppRoutes.detailsScreen);
@@ -99,8 +112,19 @@ class buildList extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Icon(Icons.favorite_border,
-                            color: Colors.black.withOpacity(0.6))
+                        GestureDetector(
+                          onTap: () => setState(() {
+                            fav.increment();
+                            favChoose = true;
+                          }),
+                          child: favChoose == true
+                              ? const Icon(
+                                  Icons.favorite,
+                                  color: AppColors.primaryGreen,
+                                )
+                              : Icon(Icons.favorite_border,
+                                  color: Colors.black.withOpacity(0.6)),
+                        )
                       ],
                     ),
                   ),
@@ -125,17 +149,23 @@ class buildList extends StatelessWidget {
                       ]),
                       Align(
                         alignment: Alignment.bottomLeft,
-                        child: Container(
-                          width: 80,
-                          height: 40,
-                          margin: const EdgeInsets.only(right: 0),
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  bottomRight: Radius.circular(12)),
-                              color: Colors.green),
-                          child: const Center(
-                            child: Icon(Icons.add_shopping_cart),
+                        child: GestureDetector(
+                          onTap: () => setState(() {
+                            cart.incrementItems();
+                            i.increment();
+                          }),
+                          child: Container(
+                            width: 80,
+                            height: 40,
+                            margin: const EdgeInsets.only(right: 0),
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(12),
+                                    bottomRight: Radius.circular(12)),
+                                color: Colors.green),
+                            child: const Center(
+                              child: Icon(Icons.add_shopping_cart),
+                            ),
                           ),
                         ),
                       ),

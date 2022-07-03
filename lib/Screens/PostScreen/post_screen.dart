@@ -280,7 +280,7 @@ class _PostScreenState extends State<PostScreen> {
   }
 }
 
-class fieldBuilder extends StatelessWidget {
+class fieldBuilder extends StatefulWidget {
   const fieldBuilder(
       {Key? key,
       required this.size,
@@ -293,24 +293,29 @@ class fieldBuilder extends StatelessWidget {
   final String hinttext;
 
   @override
+  State<fieldBuilder> createState() => _fieldBuilderState();
+}
+
+class _fieldBuilderState extends State<fieldBuilder> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 5),
-      width: size.width * 0.9,
+      width: widget.size.width * 0.9,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            child: Text(titleText, style: ThemeText.postTitleText),
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Text(widget.titleText, style: ThemeText.postTitleText),
           ),
           Center(
             child: TextField(
               autocorrect: true,
               style: const TextStyle(color: AppColors.primaryGreen),
               decoration: InputDecoration(
-                hintText: hinttext,
+                hintText: widget.hinttext,
                 fillColor: Colors.white,
                 filled: true,
                 focusedBorder: OutlineInputBorder(

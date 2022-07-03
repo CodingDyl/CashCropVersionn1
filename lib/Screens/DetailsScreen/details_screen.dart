@@ -1,10 +1,21 @@
 //import 'package:cash_crop_version1/Home/homepage.dart';
+import 'package:cash_crop_version1/constants/cartController.dart';
+import 'package:cash_crop_version1/constants/itemController.dart';
 import 'package:cash_crop_version1/constants/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DetailsPage extends StatelessWidget {
+class DetailsPage extends StatefulWidget {
   const DetailsPage({Key? key}) : super(key: key);
+
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  final cartController cart = Get.put(cartController());
+  final itemsController item = Get.put(itemsController());
+  final price = 27.50;
 
   @override
   Widget build(BuildContext context) {
@@ -92,25 +103,29 @@ class DetailsPage extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Container(
-                                  padding: const EdgeInsets.all(10),
-                                  height: size.height * 0.05,
-                                  width: size.width * 0.1,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.3),
-                                          spreadRadius: 3,
-                                          blurRadius: 5,
-                                          offset: const Offset(0, 3),
-                                        ),
-                                      ]),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.shopping_bag_outlined,
-                                      color: Color(0xFF0EAE30),
+                                GestureDetector(
+                                  onTap: () =>
+                                      Get.toNamed(AppRoutes.cartScreen),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    height: size.height * 0.05,
+                                    width: size.width * 0.1,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.3),
+                                            spreadRadius: 3,
+                                            blurRadius: 5,
+                                            offset: const Offset(0, 3),
+                                          ),
+                                        ]),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.shopping_bag_outlined,
+                                        color: Color(0xFF0EAE30),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -216,24 +231,34 @@ class DetailsPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
-                          height: 35,
-                          width: 35,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 1),
+                        GestureDetector(
+                          onTap: () => item.decrease(),
+                          child: Container(
+                            height: 35,
+                            width: 35,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 1),
+                            ),
+                            child: const Center(child: Icon(Icons.remove)),
                           ),
-                          child: const Center(child: Icon(Icons.remove)),
                         ),
-                        const Text(
-                          "1",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        Obx(
+                          () => Text(
+                            "${item.amount.value.toString()}",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        Container(
-                          height: 35,
-                          width: 35,
-                          color: const Color(0xFF0EAE30),
-                          child: const Center(
-                              child: Icon(Icons.add, color: Colors.white)),
+                        GestureDetector(
+                          onTap: () => setState(() {
+                            item.increment();
+                          }),
+                          child: Container(
+                            height: 35,
+                            width: 35,
+                            color: const Color(0xFF0EAE30),
+                            child: const Center(
+                                child: Icon(Icons.add, color: Colors.white)),
+                          ),
                         ),
                       ],
                     ),
@@ -368,9 +393,12 @@ class DetailsPage extends StatelessWidget {
                                     color: Colors.black.withOpacity(0.7))),
                             Row(
                               children: [
-                                const Text("R27.50",
-                                    style: TextStyle(
-                                        fontSize: 22, color: Colors.white)),
+                                Obx(
+                                  () => Text(
+                                      "R ${(price * item.amount.value).toString()}0",
+                                      style: const TextStyle(
+                                          fontSize: 22, color: Colors.white)),
+                                ),
                                 const SizedBox(
                                   width: 5,
                                 ),
@@ -383,28 +411,34 @@ class DetailsPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.all(10.0),
-                        width: size.width * 0.5,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(25),
-                              bottomRight: Radius.circular(25)),
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                              Text("Add to cart",
-                                  style: TextStyle(
-                                      color: Color(0xFF0EAE30), fontSize: 20)),
-                              Icon(
-                                Icons.add_shopping_cart,
-                                color: Color(0xFF0EAE30),
-                                size: 20,
-                              )
-                            ],
+                      GestureDetector(
+                        onTap: () => setState(() {
+                          cart.incrementItems();
+                        }),
+                        child: Container(
+                          margin: const EdgeInsets.all(10.0),
+                          width: size.width * 0.5,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(25),
+                                bottomRight: Radius.circular(25)),
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: const [
+                                Text("Add to cart",
+                                    style: TextStyle(
+                                        color: Color(0xFF0EAE30),
+                                        fontSize: 20)),
+                                Icon(
+                                  Icons.add_shopping_cart,
+                                  color: Color(0xFF0EAE30),
+                                  size: 20,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       )
